@@ -62,12 +62,12 @@ product_link - Official Website Link of the Product
 ## IMPORT LIBRARIES
 
 We will use the following libraries
-1. Pandas: Data manipulation and analysis
-2. Numpy: Numerical operations and calculations
-3. Matplotlib: Data visualization and plotting
-4. Seaborn: Enhanced data visualization and statistical graphics
-5. Plotly: Interactive and enhanced data visualization plotting
-6. Scipy: Scientific computing and advanced mathematical operations
+- Pandas: Data manipulation and analysis
+- Numpy: Numerical operations and calculations
+- Matplotlib: Data visualization and plotting
+- Seaborn: Enhanced data visualization and statistical graphics
+- Plotly: Interactive and enhanced data visualization plotting
+- Scipy: Scientific computing and advanced mathematical operations
 
 ## QUESTIONS
 
@@ -88,3 +88,104 @@ We will use the following libraries
 8. Hypothesis: With Ratings below 3.5, the users showed dissatisfaction in the products.
 
 ## THE ANALYSIS
+
+### OBSERVATION 
+
+There are 1465 rows and 16 columns in the dataset.
+
+The data type of all columns is object.
+
+The columns in the datasets are:
+'product_id', 'product_name', 'sub_category', 'discounted_price', 'actual_price', 'discount_percentage', 'rating', 'rating_count', 'about_product', 'user_id', 'user_name', 'review_id', 'review_title', 'review_content', 'img_link', 'product_link'
+
+Rating has one unsual character, which will to changed to na(none)
+
+There are a few missing values in the dataset, and they will be dropped.
+
+Category column had to be renamed to properly represent its values and a new column was created to narrow down product category.
+
+The data type for discounted price, actual price, discounted percentage, rating and rating count has to changed into an integer or float for anaylsis purpose.
+
+**Check codes out here : [python_project](/Python_project-amazon.dataset--1/python_project(amazon.dataset).ipynb)**
+
+### 1. The Average Rating For Each Product Category
+
+I created a new column to narrow down product category by splitting up the variables in the original column(category).
+
+```
+df3 = (df[['category', 'rating']].groupby('category').agg({'rating':'mean'})).reset_index()
+df3 = df3.sort_values(by='rating', ascending = False)
+df3
+```
+
+The output shows that most product categories generally have a positive customer feedback, with average ratings above 3.50.
+
+
+| Category                | Rating   |
+|-------------------------|----------|
+| OfficeProducts          | 4.309677 |
+| Toys & Games            | 4.300000 |
+| Home Improvement        | 4.250000 |
+| Computers & Accessories | 4.155654 |
+| Electronics             | 4.081749 |
+| Home & Kitchen          | 4.040716 |
+| Health & Personal Care  | 4.000000 |
+| Musical Instruments     | 3.900000 |
+| Car & Motorbike         | 3.800000 |
+
+*Table 1: Product Category rating table*
+
+### 2. The Top Rating_count Products By Category
+```
+top_reviewed_per_category = (df.groupby("category").apply(lambda x: x.nlargest(10, "rating_count")).reset_index(drop=True))
+top_reviewed_per_category
+```
+
+The result highlights products likely to be popular within their categories based on high review counts, suggesting customer interest and engagement.
+
+Most listed products have ratings above 3.5, indicating a generally positive customer experience.
+
+Products with the highest review counts within their categories might be considered potential top sellers, even without direct sales data.
+
+*The result table is not displayed due to it's size*
+
+### 3. The Relationship Between Discounted Price And Rating
+
+The correlation between discounted price and rating is used to determine the relationship between them.
+
+```
+correlation_coefficient = df["discounted_price"].corr(df["rating"])
+correlation_coefficient
+```
+0.1211318752606628
+
+Discounted price and rating have a weak positive correlation of 0.12. This means that products with higher discounted prices tend to have slightly higher ratings, but the relationship is not very strong.
+
+### 4. Rating With The Highest Rating Count
+
+A new column named as 'rating_Group' was created and used for this analysis. Bins were created and assigned to the new column.
+
+```
+# Define bin edges
+bins = [2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0]
+
+# Define bin labels
+labels = ['2.0-2.5', '2.6-3.0', '3.1-3.5', '3.6-4.0', '4.1-4.5', '4.6-5.0']
+
+# Create a new column 'rating_Group' with the assigned bins
+df['rating_Group'] = pd.cut(df['rating'], bins=bins, labels=labels, include_lowest=True)
+
+result=df[['rating_Group','rating_count']].\
+groupby(['rating_Group']).agg('sum')
+result.reset_index(inplace=True)
+
+fig=px.bar(result,x='rating_Group',y='rating_count',
+          labels={'rating_Group':'Grouped Ratings','rating_count':'Rating Count'},
+          title='Distribution of rating count across Grouped Ratings')
+fig.show()
+```
+The output shows that majority of the users rate product from 4.1 to 4.5. This also symbolises a positive customer experience 
+
+![Rating Count Accros Group Rating](/Python_project-amazon.dataset--1/images/q4.image.png)
+*Bar graph visualizing the distribution of rating count across group ratings*
+
