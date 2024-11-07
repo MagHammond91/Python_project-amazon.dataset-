@@ -189,3 +189,131 @@ The output shows that majority of the users rate product from 4.1 to 4.5. This a
 ![Rating Count Accros Group Rating](/Python_project-amazon.dataset--1/images/q4.image.png)
 *Bar graph visualizing the distribution of rating count across group ratings*
 
+### 5. Discount Percentage With The Highest Sales Count
+```
+# Creating a new column to Discount_percentage into range.
+# Define bin edges
+bins = [0, 25, 50, 75, 100]
+
+# Define bin labels
+labels = ['0-25%', '26-50%', '51-75%', '76-100%']
+
+# Create a new column 'Percentage_Group' with the assigned bins
+
+df['Percentage_Group'] = pd.cut(df['discount_percentage'], bins=bins, labels=labels, include_lowest=True)
+
+# Using the grouped discount percentage
+result1=df[['Percentage_Group','sub_category']].\
+groupby(['Percentage_Group']).agg('count')
+result1.reset_index(inplace=True)
+
+
+fig=px.bar(result1,x='Percentage_Group',y='sub_category',
+          labels={'Percentage_Group':'Grouped Discount Percentages','category':'sub category Count'},
+          title='Distribution of Product sub Category across Grouped Discount Percentages')
+fig.show()
+``` 
+
+It was realised that majority of the sales came from products with discount percentage 51-75%
+
+![Highest Discount Percentage Range](/Python_project-amazon.dataset--1/images/q5.image.png)
+
+
+### 6. Products With The Best And Worst Review
+```
+# Calculate sentiment score for each review
+df["sentiment"] = df["review_content"].apply(lambda text: TextBlob(text).sentiment.polarity)
+
+# Aggregate sentiment scores by product ID
+product_sentiment = df.groupby("product_id")["sentiment"].mean()
+
+# Find the product with the best and worst reviews
+best_product = product_sentiment.idxmax()
+worst_product = product_sentiment.idxmin()
+
+print("Product with the best review:", best_product)
+print("Product with the worst review:", worst_product)
+```
+```
+Product with the best review: B016MDK4F4
+Product with the worst review: B09XJ1LM7R
+```
+Product with the best sentiment score is "Ok,Quality perfect , perfect 5m, must buy", (Product_id = B016MDK4F4) with a scrore of 1.0. This indicates a strong posiitve sentiment.
+
+Product with the worst sentiment score is "tv on off not working, so difficult to battery charge", (Product_id = B09XJ1LM7R ) with a score of -0.6. This indicates a strong negative sentiment. 
+
+Products with negative sentiment scores suggest potential areas for improvement. Further analysis of these products could help identify reasons for these bad reviews and identify potential solutions.
+
+
+### 7. Top 5 Categories Based On Highest Ratings
+
+```
+# Group data by sub_category and calculate average rating
+average_ratings = df.groupby("sub_category")["rating"].mean().reset_index()
+
+# Sort by average rating in descending order
+average_ratings = average_ratings.sort_values(by="rating", ascending=False)
+
+# Print the top 5 categories
+print("Top 5 Product sub categories with highest average ratings:")
+for i in range(5):
+    sub_category = average_ratings.iloc[i]["sub_category"]
+    average_rating = average_ratings.iloc[i]["rating"]
+    print(f"{i+1}. {sub_category}: {average_rating:.2f}")
+
+```
+```
+Top 5 Product sub categories with highest average ratings:
+1. Computers&Accessories|Tablets: 4.60
+2. Computers&Accessories|NetworkingDevices|NetworkAdapters|PowerLANAdapters: 4.50
+3. Electronics|Cameras&Photography|Accessories|Film: 4.50
+4. Electronics|HomeAudio|MediaStreamingDevices|StreamingClients: 4.50
+5. OfficeProducts|OfficeElectronics|Calculators|Basic: 4.50
+```
+The top 5 categories have average ratings between 4.50 and 4.60, indicating overall positive customer satisfaction within these areas.
+
+Most of the top-rated categories fall within technology-related domains, including tablets, networking devices, photography accessories, media streaming devices, and calculators.
+
+Within broader categories like "Computers & Accessories" and "Electronics," specific subcategories emerge as particularly well-rated, such as tablets, powerline adapters, film 
+accessories, and streaming clients.
+
+Four categories share a rating of 4.50, suggesting similar levels of customer satisfaction across these areas.
+
+The presence of "Basic Calculators" in the top 5 suggests that even relatively simple products can achieve high ratings if they meet customer needs effectively.
+
+### 8. Hypothesis: With Ratings below 3.5, the users showed dissatisfaction in the products.
+```
+# Define a threshold for classifying reviews
+threshold = 0.2
+
+# Add a new column with labels (Good or Bad)
+df['sentiment_label'] = df['sentiment'].apply(lambda x: 'Good' if x >= threshold else 'Bad')
+
+# Filter rows with ratings below 3.5
+filtered_df = df[df['rating'] < 3.5]
+
+# Count elements in the 'sentiment' column
+sentiment_label_count = filtered_df['sentiment_label'].value_counts()
+
+# Check if the count of 'Good' is greater than the count of 'Bad'
+satisfied = sentiment_label_count.get('Good', 0) > sentiment_label_count.get('Bad', 0)
+
+# Display the sentiment label count, and conclusion
+print(sentiment_label_count)
+print("\nConclusion:")
+
+if satisfied:
+    print("The user was satisfied with the product.")
+else:
+    print("The user was not satisfied with the product.")
+```
+```
+sentiment_label
+Bad     28
+Good    13
+Name: count, dtype: int64
+
+Conclusion:
+The user was not satisfied with the product
+```
+The results reveals that at a threshold of 0.2, the users who rated below 3.5 showed dissatisfaction in the products. 
