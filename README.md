@@ -201,7 +201,7 @@ fig.show()
 
 It was realised that majority of the sales came from products with discount percentage 51-75%
 
-![Highest Discount Percentage Range](/Python_project-amazon.dataset--1/images/q5.image.png)
+![Highest Discount Percentage Range](/images/q5.image.png)
 *Bar graph visualizing the distribution of of product category across discount percentages(grouped)*
 
 ### 5. Products With The Best And Worst Review
