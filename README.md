@@ -186,7 +186,7 @@ fig.show()
 ```
 The output shows that majority of the users rate product from 4.1 to 4.5. This also symbolises a positive customer experience 
 
-![Rating Count Accros Group Rating](/Python_project-amazon.dataset--1/images/q4.image.png)
+![Rating Count Accros Group Rating](Python_project-amazon.dataset--1/images/q4.image.png)
 *Bar graph visualizing the distribution of rating count across group ratings*
 
 ### 5. Discount Percentage With The Highest Sales Count
