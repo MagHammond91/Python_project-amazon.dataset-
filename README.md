@@ -73,19 +73,17 @@ We will use the following libraries
 
 1. What is the average rating for each product category?
 
-2. What are the top rating_count products by category?
+2. What is the relationship between discounted price and rating?
 
-3. What is the relationship between discounted price and rating?
+3. What rating has the highest rating count?
 
-4. What rating has the highest rating count?
+4. What discount percentage had the highest sales count?
 
-5. What discount percentage had the highest sales count?
+5. What products received the best and worst review?
 
-6. What products received the best and worst review?
+6. What are the Top 5 categories based with highest ratings?
 
-7. What are the Top 5 categories based with highest ratings?
-
-8. Hypothesis: With Ratings below 3.5, the users showed dissatisfaction in the products.
+7. Hypothesis: With Ratings below 3.5, the users showed dissatisfaction in the products.
 
 ## THE ANALYSIS
 
@@ -135,21 +133,8 @@ The output shows that most product categories generally have a positive customer
 
 *Table 1: Product Category rating table*
 
-### 2. The Top Rating_count Products By Category
-```
-top_reviewed_per_category = (df.groupby("category").apply(lambda x: x.nlargest(10, "rating_count")).reset_index(drop=True))
-top_reviewed_per_category
-```
 
-The result highlights products likely to be popular within their categories based on high review counts, suggesting customer interest and engagement.
-
-Most listed products have ratings above 3.5, indicating a generally positive customer experience.
-
-Products with the highest review counts within their categories might be considered potential top sellers, even without direct sales data.
-
-*The result table is not displayed due to it's size*
-
-### 3. The Relationship Between Discounted Price And Rating
+### 2. The Relationship Between Discounted Price And Rating
 
 The correlation between discounted price and rating is used to determine the relationship between them.
 
@@ -161,7 +146,7 @@ correlation_coefficient
 
 Discounted price and rating have a weak positive correlation of 0.12. This means that products with higher discounted prices tend to have slightly higher ratings, but the relationship is not very strong.
 
-### 4. Rating With The Highest Rating Count
+### 3. Rating With The Highest Rating Count
 
 A new column named as 'rating_Group' was created and used for this analysis. Bins were created and assigned to the new column.
 
@@ -189,7 +174,7 @@ The output shows that majority of the users rate product from 4.1 to 4.5. This a
 ![Rating Count Accros Group Rating](/Python_project-amazon.dataset--1/images/q4.image.png)
 *Bar graph visualizing the distribution of rating count across group ratings*
 
-### 5. Discount Percentage With The Highest Sales Count
+### 4. Discount Percentage With The Highest Sales Count
 ```
 # Creating a new column to Discount_percentage into range.
 # Define bin edges
@@ -219,7 +204,7 @@ It was realised that majority of the sales came from products with discount perc
 ![Highest Discount Percentage Range](/Python_project-amazon.dataset--1/images/q5.image.png)
 *Bar graph visualizing the distribution of of product category across discount percentages(grouped)*
 
-### 6. Products With The Best And Worst Review
+### 5. Products With The Best And Worst Review
 ```
 # Calculate sentiment score for each review
 df["sentiment"] = df["review_content"].apply(lambda text: TextBlob(text).sentiment.polarity)
@@ -245,7 +230,7 @@ Product with the worst sentiment score is "tv on off not working, so difficult t
 Products with negative sentiment scores suggest potential areas for improvement. Further analysis of these products could help identify reasons for these bad reviews and identify potential solutions.
 
 
-### 7. Top 5 Categories Based On Highest Ratings
+### 6. Top 5 Categories Based On Highest Ratings
 
 ```
 # Group data by sub_category and calculate average rating
@@ -281,7 +266,7 @@ Four categories share a rating of 4.50, suggesting similar levels of customer sa
 
 The presence of "Basic Calculators" in the top 5 suggests that even relatively simple products can achieve high ratings if they meet customer needs effectively.
 
-### 8. Hypothesis: With Ratings below 3.5, the users showed dissatisfaction in the products.
+### 7. Hypothesis: With Ratings below 3.5, the users showed dissatisfaction in the products.
 ```
 # Define a threshold for classifying reviews
 threshold = 0.2
@@ -320,4 +305,12 @@ The results reveals that at a threshold of 0.2, the users who rated below 3.5 sh
 
 ## CONCLUSION
 
-The
+This analysis of the Amazon Sales Dataset provided critical insights into consumer preferences, product performance, and potential opportunities for business strategy enhancement. By examining key metrics like average ratings, review counts, and sentiment scores, we identified trends that underline consumer satisfaction and dissatisfaction.
+
+Our findings showed that most product categories generally receive favorable feedback, with Office Products, Toys & Games, and Home Improvement emerging as top-rated categories. Products with higher review counts reflect significant consumer engagement, often correlating with higher ratings, suggesting popularity and reliability.
+
+The analysis also highlighted that discounts of 51-75% are most effective at driving sales volume, presenting a clear opportunity for marketing strategies. Additionally, while there is a weak positive correlation between discounted price and product rating, it indicates that pricing strategies should not solely rely on discounts to enhance product appeal.
+
+Furthermore, sentiment analysis revealed the importance of addressing negative reviews to improve customer experience. Products with negative feedback could benefit from targeted improvements to mitigate dissatisfaction. The hypothesis testing reinforced that users who rated products below 3.5 often had negative sentiments, emphasizing a clear correlation between lower ratings and user dissatisfaction.
+
+These insights can guide actionable recommendations for optimizing product development, adjusting pricing strategies, and improving marketing efforts to align more closely with consumer preferences and boost competitive advantage.
