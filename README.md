@@ -89,20 +89,20 @@ We will use the following libraries
 
 ### OBSERVATION 
 
-There are 1465 rows and 16 columns in the dataset.
+- There are 1465 rows and 16 columns in the dataset.
 
-The data type of all columns is object.
+- The data type of all columns is object.
 
-The columns in the datasets are:
+- The columns in the datasets are:
 'product_id', 'product_name', 'sub_category', 'discounted_price', 'actual_price', 'discount_percentage', 'rating', 'rating_count', 'about_product', 'user_id', 'user_name', 'review_id', 'review_title', 'review_content', 'img_link', 'product_link'
 
-Rating has one unsual character, which will to changed to na(none)
+- Rating has one unsual character, which will to changed to na(none)
 
-There are a few missing values in the dataset, and they will be dropped.
+- There are a few missing values in the dataset, and they will be dropped.
 
-Category column had to be renamed to properly represent its values and a new column was created to narrow down product category.
+- Category column had to be renamed to properly represent its values and a new column was created to narrow down product category.
 
-The data type for discounted price, actual price, discounted percentage, rating and rating count has to changed into an integer or float for anaylsis purpose.
+- The data type for discounted price, actual price, discounted percentage, rating and rating count has to changed into an integer or float for anaylsis purpose.
 
 **Check codes out here : [python_project](/Python_project-amazon.dataset--1/python_project(amazon.dataset).ipynb)**
 
