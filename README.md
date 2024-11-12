@@ -247,14 +247,18 @@ for i in range(5):
     print(f"{i+1}. {sub_category}: {average_rating:.2f}")
 
 ```
-```
-Top 5 Product sub categories with highest average ratings:
-1. Computers&Accessories|Tablets: 4.60
-2. Computers&Accessories|NetworkingDevices|NetworkAdapters|PowerLANAdapters: 4.50
-3. Electronics|Cameras&Photography|Accessories|Film: 4.50
-4. Electronics|HomeAudio|MediaStreamingDevices|StreamingClients: 4.50
-5. OfficeProducts|OfficeElectronics|Calculators|Basic: 4.50
-```
+
+| Rank | Subcategory                                                                           | Average Rating |
+|------|---------------------------------------------------------------------------------------|----------------|
+| 1    | Computers & Accessories, Tablets                                                    | 4.60           |
+| 2    | Computers & Accessories, Networking Devices, Network Adapters, Power LAN Adapters | 4.50           |
+| 3    | Electronics, Cameras & Photography, Accessories, Film                             | 4.50           |
+| 4    | Electronics,  Home Audio, Media Streaming Devices, Streaming Clients               | 4.50           |
+| 5    | Office Products, Office Electronics, Calculators, Basic                          | 4.50           |
+
+*Top 5 Product sub categories with highest average ratings table*
+
+
 The top 5 categories have average ratings between 4.50 and 4.60, indicating overall positive customer satisfaction within these areas.
 
 Most of the top-rated categories fall within technology-related domains, including tablets, networking devices, photography accessories, media streaming devices, and calculators.
