@@ -186,7 +186,7 @@ fig.show()
 ```
 The output shows that majority of the users rate product from 4.1 to 4.5. This also symbolises a positive customer experience 
 
-![Rating Count Accros Group Rating](Python_project-amazon.dataset--1/images/q4.image.png)
+![Rating Count Accros Group Rating](/Python_project-amazon.dataset--1/images/q4.image.png)
 *Bar graph visualizing the distribution of rating count across group ratings*
 
 ### 5. Discount Percentage With The Highest Sales Count
@@ -217,7 +217,7 @@ fig.show()
 It was realised that majority of the sales came from products with discount percentage 51-75%
 
 ![Highest Discount Percentage Range](/Python_project-amazon.dataset--1/images/q5.image.png)
-
+*Bar graph visualizing the distribution of of product category across discount percentages(grouped)*
 
 ### 6. Products With The Best And Worst Review
 ```
