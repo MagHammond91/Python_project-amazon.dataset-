@@ -14,9 +14,9 @@
 
 ## PROJECT DESCRIPTION
 
-The primary aim of analyzing the Amazon Sales Dataset is to delve into product categories, prices, ratings, and sales patterns to identify characteristics that resonate with consumers and propel them to purchase as well as provide actionable recommendations that optimize product development, inform marketing strategies and boost your competitive edge.
+The primary aim of analyzing the Amazon Sales Dataset is to delve into product categories, prices, ratings, and sales patterns to identify characteristics that resonate with consumers and propel them to purchase as well as provide actionable recommendations that optimize product development, inform marketing strategies and boost competitive edge.
 
-Exploring this dataset involves a step-by-step process,where we will clean and prepare the data to ensure it's accuracy and consistency. Followed by summarizing the data using descriptive statistics, visualize the data with charts and graphs to see patterns and relationships. We detect outliers, which are unusual data points, and test our assumptions about the data. We divide the data into groups for better understanding and finally, we summarize our findings.
+Exploring this dataset involves a step-by-step process,where we will clean and prepare the data to ensure it's accuracy and consistency. Followed by summarizing the data using descriptive statistics, visualize the data with charts and graphs to see patterns and relationships. We will detect outliers, which are unusual data points, and test our assumptions about the data. We will divide the data into groups for better understanding and finally, we will summarize our findings.
 
 
 ## ABOUT DATASET
@@ -102,7 +102,7 @@ We will use the following libraries
 
 - Category column had to be renamed to properly represent its values and a new column was created to narrow down product category.
 
-- The data type for discounted price, actual price, discounted percentage, rating and rating count has to changed into an integer or float for anaylsis purpose.
+- The data type for discounted price, actual price, discounted percentage, rating and rating count has to be changed into an integer or float for anaylsis purpose.
 
 **Check codes out here : [python_project](/Python_project-amazon.dataset--1/python_project(amazon.dataset).ipynb)**
 
