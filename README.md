@@ -14,7 +14,7 @@
 
 ## PROJECT DESCRIPTION
 
-The primary aim of analyzing the Amazon Sales Dataset is delve into product categories, prices, ratings, and sales patterns to identify characteristics that resonate with consumers and propel them to purchase as well as provide actionable recommendations that optimize product development, inform marketing strategies and boost your competitive edge.
+The primary aim of analyzing the Amazon Sales Dataset is to delve into product categories, prices, ratings, and sales patterns to identify characteristics that resonate with consumers and propel them to purchase as well as provide actionable recommendations that optimize product development, inform marketing strategies and boost your competitive edge.
 
 Exploring this dataset involves a step-by-step process,where we will clean and prepare the data to ensure it's accuracy and consistency. Followed by summarizing the data using descriptive statistics, visualize the data with charts and graphs to see patterns and relationships. We detect outliers, which are unusual data points, and test our assumptions about the data. We divide the data into groups for better understanding and finally, we summarize our findings.
 
